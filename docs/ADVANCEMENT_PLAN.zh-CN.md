@@ -29,7 +29,7 @@
 | 手动重试可能重复记分 | retry 再次调用 pushScore → addScore，重新生成 tag；post 内的一次自动重试则复用原请求体 | 第一次写入成功但响应丢失时，再手动重试可能产生第二条；应复用同一局 ID |
 | 我的成绩标记按分数相等判断 | renderBoard 用 row.score === myScore | 同分他人可能被标为自己，应使用返回的 recordId/runId |
 | README 部分说明与代码脱节 | 声称进不了前20不提交；当前 onGameOver 对正分直接 pushScore；文档调试名 __SUIKA__，代码实际 __DNW__ | 需要同步文档；当前榜单是“最近20次提交内排序”，不是历史前20 |
-| 可维护的排行榜源码及构建脚本缺口 | 49个已跟踪文件中，只有 leaderboard.min.js，未找到 README 所述对应源码/构建脚本 | 先建立可读源码再迁移，避免直接维护混淆产物 |
+| 可维护的排行榜源码及构建脚本缺口 | 52个已跟踪文件中，只有 leaderboard.min.js，未找到 README 所述对应源码/构建脚本 | 先建立可读源码再迁移，避免直接维护混淆产物 |
 | 随机性与时间混在游戏/效果里 | [game.js](https://github.com/YHSome/BigNaiWa/blob/1c43d40b293b40224e913d3bc7f2dda24c9548e9/game.js)：掉落、粒子都用 Math.random；landed 条件使用 performance.now 与 bornAt | 单独设置种子还不足以实现可验证回放 |
 | 核心存储读写缺少异常保护 | game.js 初始化和最高分/静音保存直接访问 localStorage | 存储被禁用、满额或值损坏时的行为需要补保护；未在真实浏览器故障场景中复现 |
 | 现有测试不能代表浏览器完整体验 | 两套测试用 VM、DOM/Canvas 桩件；玩法测试用排行榜桩替代真实脚本 | 有价值，但不能证明真实 CSS、网络、可访问性与移动端稳定性 |
